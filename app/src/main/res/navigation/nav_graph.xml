@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/GameFieldFragment">
+
+    <fragment
+        android:id="@+id/GameFieldFragment"
+        android:name="ru.vsu.cs.course1.game.GameFieldFragment"
+        android:label="@string/fragment_game_field_label"
+        tools:layout="@layout/fragment_game_field">
+
+        <action
+            android:id="@+id/action_GameFieldFragment_to_ParamsFragment"
+            app:destination="@id/ParamsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ParamsFragment"
+        android:name="ru.vsu.cs.course1.game.ParamsFragment"
+        android:label="@string/fragment_params_label"
+        tools:layout="@layout/fragment_params">
+
+        <action
+            android:id="@+id/action_ParamsFragment_to_GameFieldFragment"
+            app:destination="@id/GameFieldFragment" />
+    </fragment>
+</navigation>
