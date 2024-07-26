@@ -478,9 +478,6 @@ public class Game implements Serializable {
                             score = minimax(depth + 1, false, i, j, 2);
                             field[i][j] = 0;
                             bestScore = Math.max(bestScore, score);
-                            if (bestScore == 1) {
-                                return bestScore;
-                            }
                         }
                     }
                 }
@@ -493,9 +490,6 @@ public class Game implements Serializable {
                             score = minimax(depth + 1, true, i, j, 1);
                             field[i][j] = 0;
                             bestScore = Math.min(bestScore, score);
-                            if (bestScore == -1) {
-                                return bestScore;
-                            }
                         }
                     }
                 }
@@ -503,6 +497,79 @@ public class Game implements Serializable {
         }
         return bestScore;
 
+    }
+    public int evaluateBoard() {
+        int score = 0;
+
+        // Проверим строки
+        for (int row = 0; row < 10; row++) {
+            score += evaluateLine(field[row]); // Оценка каждой строки
+        }
+
+        // Проверим столбцы
+        for (int col = 0; col < 10; col++) {
+            int[] column = new int[10];
+            for (int row = 0; row < 10; row++) {
+                column[row] = field[row][col];
+            }
+            score += evaluateLine(column); // Оценка каждого столбца
+        }
+
+        // Проверим диагонали
+        score += evaluateDiagonals(field);
+
+        return score;
+    }
+    private int evaluateLine(int[] line) {
+        int score = 0;
+        int player1Count = 0;
+        int player2Count = 0;
+
+        for (int cell : line) {
+            if (cell == 1) {
+                player1Count++;
+            } else if (cell == 2) {
+                player2Count++;
+            }
+        }
+
+        // Оценка линии на основе количества символов
+        if (player1Count > 0 && player2Count == 0) {
+            score += Math.pow(10, player1Count); // Большее количество символов - больше очков
+        } else if (player2Count > 0 && player1Count == 0) {
+            score -= Math.pow(10, player2Count); // Игрок 2 - отрицательные очки
+        }
+
+        return score;
+    }
+    private int evaluateDiagonals(int[][] field) {
+        int score = 0;
+
+        // Проверка диагоналей с верхнего левого в нижний правый
+        for (int d = -9; d <= 9; d++) {
+            int[] diagonal = new int[10];
+            for (int row = 0; row < 10; row++) {
+                int col = row + d;
+                if (col >= 0 && col < 10) {
+                    diagonal[row] = field[row][col];
+                }
+            }
+            score += evaluateLine(diagonal);
+        }
+
+        // Проверка диагоналей с верхнего правого в нижний левый
+        for (int d = 0; d < 10; d++) {
+            int[] diagonal = new int[10];
+            for (int row = 0; row < 10; row++) {
+                int col = d - row;
+                if (col >= 0 && col < 10) {
+                    diagonal[row] = field[row][col];
+                }
+            }
+            score += evaluateLine(diagonal);
+        }
+
+        return score;
     }
 
 
