@@ -1,8 +1,8 @@
 <resources>
-    <string name="app_name">GameTemplate</string>
+    <string name="app_name">Tic Tac Tie 10 x 10</string>
     <string name="action_settings">Settings</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="fragment_game_field_label">First Fragment</string>
+    <string name="fragment_game_field_label">Tic Tac Tie 10 x 10</string>
     <string name="fragment_params_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Шаблон игры</string>
+    <string name="app_name">Крестики Нолики</string>
     <string name="action_settings">Настройки</string>
     <!-- Strings used for fragments for navigation -->
     <string name="fragment_game_field_label">Игра</string>
