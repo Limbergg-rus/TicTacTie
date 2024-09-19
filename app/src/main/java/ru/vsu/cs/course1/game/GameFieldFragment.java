@@ -58,6 +58,10 @@ public class GameFieldFragment extends Fragment {
     private Game game = new Game();
     private GameFieldView gameFieldView;
 
+
+
+
+
     public static class CellCoord {
         public int row;
         public int col;
@@ -209,6 +213,9 @@ public class GameFieldFragment extends Fragment {
         binding = null;
     }
 
+    public void restartGame() {
+        game.newGame(10,10,2);
+    }
 
     protected void onClick(int row, int col) {
         int win = game.leftMouseClick(row, col);
