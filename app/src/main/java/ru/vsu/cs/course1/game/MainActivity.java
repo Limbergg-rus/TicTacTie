@@ -19,8 +19,10 @@ import ru.vsu.cs.course1.game.databinding.ActivityMainBinding;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity  {
 
     private AppBarConfiguration appBarConfiguration;
     private ActivityMainBinding binding;
@@ -81,13 +83,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    public void onRestartGame() {
+        GameFieldFragment fragment = (GameFieldFragment) getSupportFragmentManager().findFragmentById(R.id.view_game_field);
+        if (fragment != null) {
+            fragment.restartGame();
+        }
+    }
+
     public void restartGame(View view) {
 //        View game = view.findViewById(R.id.GameFieldFragment);
-//        Button btn = view.findViewById(R.id.button6);
+//        View gamee = view.findViewById(R.id.view_game_field);
+//        GameFieldFragment.restartGame(gamee);
+//        Button btn = view.findViewById(R.id.button);
 //        btn.setText("asdasd");
 //        view.findViewById(R.id.view_game_field).refreshDrawableState();
+//        GameFieldFragment.GameFieldView.getGam
+//        GameFieldFragment.restartGame(game);
 //        Game gm = s.getGame();
 //        game.updateView();
 
     }
+
 }

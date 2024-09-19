@@ -82,12 +82,13 @@ public class Game implements Serializable {
     }
 
     public int minimax(int depth, boolean isMaximizing, int row, int col, int team, int alpha, int beta) {
-        int bestScore, score;
+        int bestScore;
+        int score = 0;
         int winner = checkWinner(row, col, team);
 
         // Условие победы или завершения
         if (winner != 0 || depth == MAX_DEPTH) {
-            return AWARD.get(winner) * 10 - AWARD.get(winner) * depth;
+            return AWARD.get(winner) * 10 + AWARD.get(winner) * depth;
         }
 
         if (isMaximizing) {
@@ -97,7 +98,7 @@ public class Game implements Serializable {
                 for (int j = 0; j < field[0].length; j++) {
                     if (field[i][j] == 0) {
                         field[i][j] = 2;  // Максимизирующий игрок
-                        score = minimax(depth + 1, false, i, j, 2, alpha, beta);
+                        score += minimax(depth + 1, false, i, j, 2, alpha, beta);
                         field[i][j] = 0;  // Откатываем ход
 
                         bestScore = Math.max(bestScore, score);
@@ -119,7 +120,7 @@ public class Game implements Serializable {
                 for (int j = 0; j < field[0].length; j++) {
                     if (field[i][j] == 0) {
                         field[i][j] = 1;  // Минимизирующий игрок
-                        score = minimax(depth + 1, true, i, j, 1, alpha, beta);
+                        score += minimax(depth + 1, true, i, j, 1, alpha, beta);
                         field[i][j] = 0;  // Откатываем ход
                         bestScore = Math.min(bestScore, score);
                         beta = Math.min(beta, bestScore);
