@@ -1,9 +1,7 @@
 package ru.vsu.cs.course1.game;
 
 import java.io.Serializable;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Random;
 
 /**
  * Класс, реализующий логику игры
@@ -13,14 +11,12 @@ public class Game implements Serializable {
      * объект Random для генерации случайных чисел
      * (можно было бы объявить как )
      */
-    private final Random rnd = new Random();
 
     /**
      * двумерный массив для хранения игрового поля
      * (в данном случае цветов, 0 - пусто; создается / пересоздается при старте игры)
      */
     private int[][] field = null;
-    private int[][] scoreField = new int[10][10];
     /**
      * Максимальное кол-во цветов
      */
@@ -88,7 +84,7 @@ public class Game implements Serializable {
 
         // Условие победы или завершения
         if (winner != 0 || depth == MAX_DEPTH) {
-            return AWARD.get(winner) * 10 + AWARD.get(winner) * depth;
+            return AWARD.get(winner) * 10 - Math.abs(AWARD.get(winner) * depth);
         }
 
         if (isMaximizing) {
@@ -111,7 +107,6 @@ public class Game implements Serializable {
                     }
                 }
             }
-            return bestScore;
 
         } else {
             bestScore = Integer.MAX_VALUE;
@@ -132,10 +127,10 @@ public class Game implements Serializable {
                     }
                 }
             }
-            return bestScore;
 
 
         }
+        return bestScore;
     }
 
 
