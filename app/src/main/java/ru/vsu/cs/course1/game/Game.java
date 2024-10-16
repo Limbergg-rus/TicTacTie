@@ -242,7 +242,14 @@ public class Game implements Serializable {
                 return side;
             }
         }
-        return 0;
+        for(int i = 0; i < 10;i ++){
+            for (int k = 0; k < 10; k++){
+                if (field[i][k] == 0){
+                    return 0;
+                }
+            }
+        }
+        return 3;
     }
 
     public void rightMouseClick(int row, int col) {

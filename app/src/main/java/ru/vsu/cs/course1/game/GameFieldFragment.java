@@ -225,6 +225,13 @@ public class GameFieldFragment extends Fragment {
             toast.setGravity(Gravity.TOP, 0, 160);   // import android.view.Gravity;
             toast.show();
             game.newGame(10, 10, 2);
+        } else if (win == 3){
+            Toast toast = Toast.makeText(gameFieldView.getContext(), "Ничья", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.TOP, 0, 160);   // import android.view.Gravity;
+            toast.show();
+            game.newGame(10, 10, 2);
+
+
         }
 
         updateView();
